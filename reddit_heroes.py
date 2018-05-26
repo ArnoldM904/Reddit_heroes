@@ -1,10 +1,9 @@
 # Python 3.6.5
 # Counts any mention of Overwatch heroes. Then compares to see which
 # heroes are the most popular.
-import praw  # Used for interaction with Reddit
-import re    # Used for sorting through names and nicknames.
+import praw
+import re
 
-subreddit = 'overwatch'
 heroes = {'genji':['genji','gengu'],
         'mccree':['mccree', 'cree'],
         'pharah':['pharah'],
@@ -32,14 +31,18 @@ heroes = {'genji':['genji','gengu'],
         'doomfist':['doom'],
         'moira':['moira'],
         'brigette':['brig'],
-        }  # Lists heroes and their popular aliases.
+        }
 
-def scrape_messages(subreddit):
+def scrape_messages():
     # Scrapes all comments into a string
     messages = ''
     r = praw.Reddit('OW_Research')  # As defined in praw.ini
-    subreddit = r.subreddit(subreddit)
-    # Scrape content and add it into messages here.
+    subreddit = r.subreddit('overwatch')  # scrape /r/overwatch
+    
+    comments = subreddit.comments(limit=200)
+    for comment in comments:
+        messages += comment.body
+
     return messages
 
 
@@ -51,4 +54,4 @@ def count(messages):
             heroes[hero],reverse=True)),messages))
         print(f'{hero}:{count}')
 
-count(scrape_messages(subreddit))
+count(scrape_messages())
