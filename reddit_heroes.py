@@ -31,18 +31,18 @@ heroes = {'genji':['genji','gengu'],
         'doomfist':['doom'],
         'moira':['moira'],
         'brigette':['brig'],
-        }
+        }  # Heroes and their nicknames. Fullname not needed.
 
 def scrape_messages():
     # Scrapes all comments into a string
-    messages = ''
+    messages = ''  # Where all comments we examine are kept.
     r = praw.Reddit('OW_Research')  # As defined in praw.ini
     subreddit = r.subreddit('overwatch')  # scrape /r/overwatch
     
     comments = subreddit.comments(limit=200)
     for comment in comments:
-        messages += comment.body
-
+        messages += comment.body  # .body is the comment text.
+        
     return messages
 
 
