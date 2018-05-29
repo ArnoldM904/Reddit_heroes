@@ -49,9 +49,15 @@ def scrape_messages():
 def count(messages):
     # Counts all mentions of every hero.
     # NOTE: Does not store the data anywhere yet!
+    
+    # --ADD HERE-- Read the hero_count.txt file and record numbers.
     for hero in heroes:
         count = len(re.findall("|".join(sorted(
             heroes[hero],reverse=True)),messages))
-        print(f'{hero}:{count}')
-
+        print(f'{hero}:{count}')=
+        # --ADD HERE-- add new numbers to files found in txt file.
+        # --ADD HERE-- then close and save file.
+        
+        
+# --ADD HERE-- Now repeat every X hours.        
 count(scrape_messages())
