@@ -55,7 +55,7 @@ def count(messages):
     for hero in heroes:
         count = len(re.findall("|".join(sorted(
             heroes[hero],reverse=True)),messages))
-        print(f'{hero}:{count}')=
+        print(f'{hero}:{count}')
         # --ADD HERE-- add new numbers to files found in txt file.
         # --ADD HERE-- then close and save file.
         
