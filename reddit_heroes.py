@@ -1,8 +1,9 @@
 # Python 3.6.5
 # Counts any mention of Overwatch heroes. Then compares to see which
 # heroes are the most popular.
-import praw
-import re
+import praw  # Reddit API
+import re    # Regex (to parse comments)
+import time  # To loop program every 2 hours
 
 heroes = {'genji':['genji','gengu'],
         'mccree':['cree'],
@@ -59,5 +60,6 @@ def count(messages):
         # --ADD HERE-- then close and save file.
         
         
-# --ADD HERE-- Now repeat every X hours.        
-count(scrape_messages())
+while True:
+    count(scrape_messages())
+    time.sleep(7200)  # Wait 2 hours until next check.
