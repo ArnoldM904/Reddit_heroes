@@ -78,7 +78,10 @@ def count(messages):
         count += 1
     for entry in updated_file:
         f.write(f'{entry}\n')
-        
+
+loops = 0
 while True:
     count(scrape_messages())
+    loops += 1
+    print(f'{loops * 2} hours have been recorded.')
     time.sleep(7200)  # Wait 2 hours until next check.
