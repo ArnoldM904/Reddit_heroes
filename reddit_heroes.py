@@ -51,24 +51,25 @@ def count(messages):
     # Counts all mentions of every hero.
     # Then adds the counts to existing amounts saved and stores them in a file.
     
+    # Records the count number for each hero in the existing txt file.
     file_name = 'hero_mentions.txt'
     with open(file_name) as f:
-        lines = [x.strip() for x in f]  # Records hero:count
+        lines = [x.strip() for x in f]  # Records as hero:count
         existing_count = [x.split(':')[1] for x in lines]
-        print(existing_count)
-        # Records counts as ints to be added to new values before rewritten.
 
+    # Counts new appearances found in recently scraped data.
     new_count = []
     for hero in heroes:
         count = len(re.findall("|".join(sorted(
             heroes[hero],reverse=True)),messages))
         new_count.append(int(count))
-        print(f'{hero}:{count}')  # Outputs locally so I can see it in progress
        
+    # Sums the existing counts with the new finds.
     updated_count = []
     for num in range(len(existing_count)):
         updated_count.append(int(existing_count[num]) + new_count[num])
 
+    # Writes the file in a human-readable format of the total hero:count
     updated_file = []
     f = open(file_name, 'w+')
     count = 0
@@ -80,6 +81,7 @@ def count(messages):
         f.write(f'{entry}\n')
 
 loops = 0
+# Repeat forever, giving console updates every 2 hours.
 while True:
     count(scrape_messages())
     loops += 1
