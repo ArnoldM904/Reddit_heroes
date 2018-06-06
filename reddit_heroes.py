@@ -40,7 +40,7 @@ def scrape_messages():
     r = praw.Reddit('OW_Research')  # As defined in praw.ini
     subreddit = r.subreddit('overwatch')  # scrape /r/overwatch
     
-    comments = subreddit.comments(limit=200)
+    comments = subreddit.comments(limit=250)
     for comment in comments:
         messages += comment.body  # .body is the comment text.
         
